@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Humanitaire - Les Fermes de Justin | ESI Business School</title>
+    <style>
+        :root {
+            --vert-ferme: #5B8C5A;
+            --vert-clair: #8FBC8F;
+            --beige: #F5F5DC;
+            --marron: #8B4513;
+            --orange: #D2691E;
+            --texte: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            color: var(--texte);
+            background-color: #FAFAF5;
+            line-height: 1.8;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--vert-ferme) 0%, var(--vert-clair) 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "🌿";
+            position: absolute;
+            font-size: 120px;
+            opacity: 0.1;
+            top: -20px;
+            left: 10%;
+        }
+        
+        header::after {
+            content: "🐑";
+            position: absolute;
+            font-size: 100px;
+            opacity: 0.1;
+            bottom: -20px;
+            right: 10%;
+        }
+        
+        header h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        header .subtitle {
+            font-size: 1.3em;
+            font-style: italic;
+            opacity: 0.95;
+        }
+        
+        header .team {
+            margin-top: 25px;
+            font-size: 1.1em;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 30px;
+        }
+        
+        /* Navigation */
+        nav {
+            background: var(--marron);
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+        
+        nav a:hover {
+            color: var(--beige);
+        }
+        
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Sections */
+        section {
+            margin-bottom: 50px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        section h2 {
+            color: var(--vert-ferme);
+            font-size: 2em;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--vert-clair);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        section h3 {
+            color: var(--orange);
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+        }
+        
+        /* Intro box */
+        .intro-box {
+            background: linear-gradient(135deg, var(--beige) 0%, #FFF8DC 100%);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid var(--vert-ferme);
+            margin-bottom: 30px;
+        }
+        
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .card {
+            background: var(--beige);
+            padding: 25px;
+            border-radius: 10px;
+            border-top: 4px solid var(--vert-ferme);
+        }
+        
+        .card h4 {
+            color: var(--marron);
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--vert-clair);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            background: #F0FFF0;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .timeline-item::before {
+            content: '📍';
+            position: absolute;
+            left: -35px;
+            top: 20px;
+            font-size: 20px;
+        }
+        
+        .timeline-item .date {
+            color: var(--orange);
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        
+        /* Quote */
+        .quote {
+            background: var(--vert-ferme);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            font-style: italic;
+            font-size: 1.2em;
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .quote::before {
+            content: '"';
+            font-size: 60px;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            opacity: 0.3;
+        }
+        
+        /* Team members */
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .member {
+            background: var(--vert-ferme);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        /* Photo placeholder */
+        .photo-placeholder {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            height: 250px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            margin: 20px 0;
+            border: 2px dashed var(--vert-ferme);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--marron);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        footer .logo-esi {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        footer a {
+            color: var(--beige);
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            section {
+                padding: 25px;
+            }
+            nav a {
+                margin: 0 10px;
+                font-size: 0.9em;
+            }
+        }
+        
+        /* List styling */
+        ul.custom-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        ul.custom-list li {
+            padding: 10px 0 10px 35px;
+            position: relative;
+        }
+        
+        ul.custom-list li::before {
+            content: '🌱';
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Highlight box */
+        .highlight {
+            background: #FFF3E0;
+            border-left: 4px solid var(--orange);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat {
+            text-align: center;
+            background: var(--vert-ferme);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            min-width: 150px;
+        }
+        
+        .stat .number {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        
+        .stat .label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🌾 Projet Humanitaire 2025-2026</h1>
+    <p class="subtitle">Deux journées au cœur de la médiation animale aux Fermes de Justin</p>
+    <div class="team">
+        👥 Équipe : Mickaël, Petr, Carlos, Flavie, Hadiath, Jérémy, Anna
+    </div>
+</header>
+
+<nav>
+    <a onclick="document.getElementById('association').scrollIntoView({behavior:'smooth'})">L'Association</a>
+    <a onclick="document.getElementById('actions').scrollIntoView({behavior:'smooth'})">Nos Actions</a>
+    <a onclick="document.getElementById('reflexion').scrollIntoView({behavior:'smooth'})">Notre Réflexion</a>
+    <a onclick="document.getElementById('apport').scrollIntoView({behavior:'smooth'})">Apport Personnel</a>
+    <a onclick="document.getElementById('feedback').scrollIntoView({behavior:'smooth'})">Feedback</a>
+</nav>
+
+<div class="container">
+
+    <!-- SECTION 1 : PRÉSENTATION DE L'ASSOCIATION -->
+    <section id="association">
+        <h2><span>🐄</span> Présentation de l'association</h2>
+        
+        <div class="intro-box">
+            <p><strong>Les Fermes de Justin</strong> est un projet porté par l'association <em>"Au Pré de Justin"</em>, une structure associative engagée depuis plus de 10 ans dans la médiation animale et la sensibilisation à la nature, située aux portes de Lyon.</p>
+        </div>
+        
+        <h3>🌍 Organisation et structure</h3>
+        <p>L'association gère <strong>trois fermes pédagogiques complémentaires</strong>, chacune offrant une expérience unique et immersive :</p>
+        
+        <div class="card-grid">
+            <div class="card">
+                <h4>🐓 Au Pré de Justin (Charly)</h4>
+                <p>Ferme traditionnelle avec des animaux typiques de la ferme dans un cadre rural et chaleureux. C'est ici que nous avons principalement réalisé nos missions.</p>
+            </div>
+            <div class="card">
+                <h4>🦉 La Forêt de Justin (Villette-de-Vienne)</h4>
+                <p>Espace naturel accueillant des animaux insolites dans un environnement sauvage et préservé.</p>
+            </div>
+            <div class="card">
+                <h4>🐐 La Mini-Ferme de Justin (Feyzin)</h4>
+                <p>Située dans le fort historique de Feyzin, cette ferme abrite des animaux miniatures et allie patrimoine et biodiversité.</p>
+            </div>
+        </div>
+        
+        <h3>🎯 Mission et valeurs</h3>
+        <p>L'association s'articule autour de trois valeurs fondamentales :</p>
+        <ul class="custom-list">
+            <li><strong>Partage</strong> : Créer des espaces de rencontre entre les humains et le monde animal</li>
+            <li><strong>Entraide</strong> : Accompagner les publics fragiles et en situation de handicap grâce à la médiation animale</li>
+            <li><strong>Intégration</strong> : Permettre à chacun, quel que soit son parcours, de tisser un lien avec la nature</li>
+        </ul>
+        
+        <h3>📢 Communication et public</h3>
+        <p>Les Fermes de Justin s'adressent à un public diversifié : familles, écoles, structures sociales et personnes en situation de fragilité. L'association communique principalement via son site web et les réseaux sociaux, mettant en avant l'accessibilité et l'inclusion. Tous les fonds récoltés sont intégralement réinvestis dans le bien-être animal et le développement des actions de médiation.</p>
+        
+        <div class="photo-placeholder">📸 Photo de l'équipe devant la ferme</div>
+    </section>
+
+    <!-- SECTION 2 : CHOIX DE L'ASSOCIATION -->
+    <section id="choix">
+        <h2><span>💚</span> Pourquoi les Fermes de Justin ?</h2>
+        
+        <div class="quote">
+            Nous voulions un projet qui combine l'humain, l'animal et la nature — un triangle vertueux où chaque interaction porte du sens.
+        </div>
+        
+        <p>Le choix de l'association <strong>Au Pré de Justin</strong> et de ses fermes pédagogiques s'est imposé naturellement à notre groupe pour plusieurs raisons :</p>
+        
+        <h3>🌱 Une approche humaniste</h3>
+        <p>Contrairement à de nombreuses associations où le bénévolat se limite à des tâches logistiques, les Fermes de Justin proposent une <strong>expérience immersive</strong> où le bénévole devient médiateur entre l'animal et l'enfant. Cette dimension relationnelle nous a immédiatement séduits.</p>
+        
+        <h3>♿ L'inclusion au cœur du projet</h3>
+        <p>L'accueil régulier d'enfants et d'adultes en situation de handicap nous a touchés. Nous souhaitions contribuer à un projet qui ne fait pas de différence et où chacun, quelle que soit sa situation, peut découvrir la magie du contact animal.</p>
+        
+        <h3>🏫 Proximité avec Lyon</h3>
+        <p>La localisation des fermes à quelques minutes de Lyon nous a permis de réaliser nos actions pendant les vacances de printemps sans contrainte de déplacement majeure, tout en découvrant un environnement rural préservé si proche de la ville.</p>
+        
+        <h3>🐑 La médiation animale, un vecteur d'apprentissage unique</h3>
+        <p>En tant qu'étudiants en école de commerce, nous sommes formés à la communication, au management et aux relations humaines. La médiation animale représentait pour nous un <strong>terrain d'apprentissage alternatif</strong> où l'empathie, la patience et l'écoute active prennent une dimension nouvelle.</p>
+        
+        <div class="highlight">
+            <strong>Notre conviction :</strong> Le contact avec l'animal désinhibe, crée du lien et permet des échanges authentiques que le cadre classique ne permet pas toujours. Nous voulions vivre cette alchimie et la transmettre.
+        </div>
+    </section>
+
+    <!-- SECTION 3 : NOS ACTIONS -->
+    <section id="actions">
+        <h2><span>🤝</span> Nos actions réalisées</h2>
+        
+        <div class="stats">
+            <div class="stat">
+                <div class="number">2</div>
+                <div class="label">Journées de bénévolat</div>
+            </div>
+            <div class="stat">
+                <div class="number">7</div>
+                <div class="label">Bénévoles engagés</div>
+            </div>
+            <div class="stat">
+                <div class="number">1</div>
+                <div class="label">Semaine de stage enfants</div>
+            </div>
+        </div>
+        
+        <p><strong>Dates :</strong> Samedi 11 avril et samedi 18 avril 2026 | <strong>Lieu :</strong> Au Pré de Justin, Charly (69)</p>
+        
+        <h3>📋 Contexte : Le programme "Petit Fermier"</h3>
+        <p>Pendant les vacances de printemps, l'association organise des <strong>stages "Petit Fermier"</strong> sur une semaine complète, destinés aux enfants de 6 à 12 ans. Ces stages immersifs permettent aux enfants de découvrir la vie à la ferme, d'apprendre à s'occuper des animaux et de comprendre les cycles de la nature, du lundi au vendredi. Notre équipe de bénévoles est intervenue <strong>deux samedis consécutifs</strong> pour accompagner les soigneurs animaliers dans la mise en place et l'animation de ces expériences, en cohérence avec nos disponibilités étudiantes.</p>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="date">Action 1 — Samedi 11 avril 2026 : Journée d'immersion et découverte</div>
+                <p><strong>Contexte :</strong> Ce samedi marquait la fin de la première semaine du stage "Petit Fermier". Les enfants présents ce jour-là étaient inscrits pour toute la semaine et avaient déjà commencé à créer des liens avec les animaux et les soigneurs.</p>
+                <p><strong>Notre rôle :</strong></p>
+                <ul class="custom-list">
+                    <li>Accueil des familles et présentation du lieu et des règles de sécurité</li>
+                    <li>Accompagnement des enfants lors du contact avec les animaux (poules, chèvres, moutons)</li>
+                    <li>Aide à la préparation des repas pour les animaux (distribution de foin, graines, légumes)</li>
+                    <li>Animation de jeux pédagogiques sur la reconnaissance des animaux et leurs besoins</li>
+                    <li>Soutien aux enfants plus timides pour qu'ils osent approcher les animaux</li>
+                </ul>
+                <p><strong>Bilan :</strong> Une quinzaine d'enfants accueillis ce samedi, inscrits pour la semaine complète du stage. La magie opérait dès les premiers instants : les enfants, initialement hésitants, se sont progressivement transformés en petits soigneurs passionnés. Mickaël et Petr ont particulièrement accompagné un groupe d'enfants en situation d'hyperactivité, adaptant leur discours et leur patience pour créer un lien de confiance.</p>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="date">Action 2 — Samedi 18 avril 2026 : Ateliers pratiques et médiation animale</div>
+                <p><strong>Contexte :</strong> Ce second samedi correspondait à la fin de la deuxième semaine du stage "Petit Fermier". Un nouveau groupe d'enfants, inscrits pour cette seconde semaine complète, découvrait la ferme et ses habitants.</p>
+                <p><strong>Notre rôle :</strong></p>
+                <ul class="custom-list">
+                    <li>Préparation et animation d'un atelier "Toiletter et brosser les animaux" sous la supervision des soigneurs</li>
+                    <li>Encadrement d'un atelier de fabrication de mangeoires pour oiseaux sauvages</li>
+                    <li>Accompagnement des enfants lors des sessions de médiation animale avec les animaux miniatures (lapins nains, poules naines)</li>
+                    <li>Aide à la collecte des œufs au poulailler et explication du cycle de ponte</li>
+                    <li>Animation d'un moment de partage où chaque enfant exprime ce que la journée lui a apporté</li>
+                </ul>
+                <p><strong>Bilan :</strong> Ce second samedi a permis de consolider les liens tissés avec un nouveau groupe d'enfants inscrits pour la semaine. Flavie et Anna ont mené l'atelier de mangeoires avec une créativité remarquable, transformant une activité manuelle en leçon de responsabilité écologique. Carlos, Jérémy et Hadiath ont encadré la médiation avec les lapins nains, veillant à ce que chaque enfant respecte le rythme de l'animal.</p>
+            </div>
+        </div>
+        
+        <div class="photo-placeholder">📸 Photos des ateliers avec les enfants</div>
+        
+        <h3>🗓️ Planification et organisation</h3>
+        <p>Notre démarche a été méthodique :</p>
+        <ol style="margin-left: 20px; line-height: 2;">
+            <li><strong>Janvier 2026 :</strong> Prise de contact avec l'association par email et téléphone. Visite préalable de la ferme pour comprendre les besoins et les contraintes. Découverte du programme "Petit Fermier" qui se déroule sur des semaines complètes pendant les vacances scolaires.</li>
+            <li><strong>Février 2026 :</strong> Réunion d'équipe pour répartir les rôles selon les affinités de chacun. Conscient de nos contraintes d'étudiants, nous avons opté pour <strong>deux interventions le samedi</strong>, jour où le stage accueille les familles pour des activités ouvertes. Mickaël et Petr, à l'aise avec les grands animaux, se sont portés volontaires pour l'accompagnement des chèvres et moutons. Flavie et Anna, créatives et patientes, ont pris en charge les ateliers manuels. Carlos, Jérémy et Hadiath, calmes et à l'écoute, se sont concentrés sur la médiation avec les animaux miniatures et l'encadrement des enfants plus fragiles.</li>
+            <li><strong>Mars 2026 :</strong> Session de préparation avec les soigneurs de la ferme. Formation rapide sur les gestes techniques (brossage, préparation des repas, règles de sécurité). Compréhension du déroulement de la semaine "Petit Fermier" pour anticiper nos interventions du samedi.</li>
+            <li><strong>Samedi 11 avril 2026 :</strong> Première action — immersion et découverte avec les enfants de la première semaine de stage.</li>
+            <li><strong>Samedi 18 avril 2026 :</strong> Seconde action — ateliers pratiques et médiation animale avec les enfants de la deuxième semaine de stage.</li>
+        </ol>
+    </section>
+
+    <!-- SECTION 4 : APPORT PERSONNEL -->
+    <section id="apport">
+        <h2><span>🌟</span> Ce que cette expérience nous a apporté</h2>
+        
+        <div class="quote">
+            On entre à la ferme en étudiant en commerce. On en ressort un peu plus humain.
+        </div>
+        
+        <h3>🧠 Sur le plan personnel</h3>
+        
+        <div class="card-grid">
+            <div class="card">
+                <h4>🎯 Mickaël</h4>
+                <p>"J'ai découvert une patience que je ne me connaissais pas. Accompagner un enfant qui a peur des chèvres pendant 20 minutes jusqu'à ce qu'il ose tendre la main, c'est un exercice d'humilité. Ça m'a appris que le temps de l'autre n'est pas le mien."</p>
+            </div>
+            <div class="card">
+                <h4>🎯 Petr</h4>
+                <p>"Venir d'un autre pays, cette expérience m'a permis de créer du lien sans barrière de langage. L'animal parle un langage universel. J'ai compris que l'empathie ne nécessite pas toujours des mots."</p>
+            </div>
+            <div class="card">
+                <h4>🎯 Carlos</h4>
+                <p>"Le contact avec les animaux miniatures m'a fait réaliser à quel point la douceur est une force. Dans le monde de l'entreprise qu'on nous prépare, on valorise souvent l'agressivité. Ici, c'est la lenteur et la bienveillance qui créent le lien."</p>
+            </div>
+            <div class="card">
+                <h4>🎯 Flavie</h4>
+                <p>"Animer l'atelier mangeoires m'a montré que la pédagogie, c'est avant tout de la passion transmise. Quand j'ai vu les yeux des enfants s'illuminer en comprenant qu'ils venaient d'aider un oiseau à survivre, j'ai compris ce qu'était la vraie transmission."</p>
+            </div>
+ <div class="card">
+                <h4>🎯 Hadiath</h4>
+                <p>"Accompagner les enfants en situation de handicap m'a fait prendre conscience de l'importance de l'accessibilité. Ce n'est pas l'enfant qui doit s'adapter au monde, c'est le monde qui doit s'adapter à chacun. Cette leçon, je la transporterai dans ma vie professionnelle."</p>
+            </div>
+            <div class="card">
+                <h4>🎯 Jérémy</h4>
+                <p>"La ferme m'a reconnecté à des réalités que j'avais oubliées. Savoir d'où vient l'œuf, comprendre le cycle de vie, toucher la terre... C'est une remise en perspective essentielle dans notre monde digitalisé."</p>
+            </div>
+            <div class="card">
+                <h4>🎯 Anna</h4>
+                <p>"Cette expérience m'a confortée dans mon envie de travailler dans le secteur de l'ESS (Économie Sociale et Solidaire). Voir qu'on peut créer de la valeur économique tout en créant du lien social, c'est inspirant."</p>
+            </div>
+        </div>
+        
+        <h3>💼 Sur le plan professionnel</h3>
+        <p>Cette expérience développe des compétences directement transférables dans le monde professionnel :</p>
+        <ul class="custom-list">
+            <li><strong>Management adaptatif :</strong> Apprendre à gérer des groupes hétérogènes (âge, tempérament, capacités) avec des outils non conventionnels</li>
+            <li><strong>Communication non-verbale :</strong> Développer une écoute attentive aux signaux faibles, essentielle en négociation et en management</li>
+            <li><strong>Gestion de projet en contexte incertain :</strong> S'adapter aux imprévus (météo, humeur des animaux, comportement des enfants) tout en maintenant l'objectif</li>
+            <li><strong>Responsabilité sociétale :</strong> Comprendre concrètement ce que signifie la RSE (Responsabilité Sociétale des Entreprises) au-delà des rapports annuels</li>
+            <li><strong>Travail en équipe diversifiée :</strong> Coopérer avec des profils variés (soigneurs animaliers, éducateurs, bénévoles) vers un objectif commun</li>
+        </ul>
+        
+        <div class="highlight">
+            <strong>Pour nos futurs recruteurs :</strong> Cette expérience démontre notre capacité à nous investir dans des projets porteurs de sens, à nous adapter à des environnements atypiques et à placer l'humain au centre de nos préoccupations. Ces qualités sont de plus en plus recherchées par les entreprises engagées.
+        </div>
+    </section>
+
+    <!-- SECTION 5 : FEEDBACK -->
+    <section id="feedback">
+        <h2><span>💬</span> Feedback des bénéficiaires et de l'équipe</h2>
+        
+        <h3>👶 Retour des enfants</h3>
+        <p>Bien que nous n'ayons pas réalisé de sondage formel, les réactions des enfants parlaient d'elles-mêmes :</p>
+        
+        <div class="quote">
+            Les enfants les plus timides au matin étaient ceux qui pleuraient au moment de partir le soir. Ce n'est pas un indicateur de satisfaction plus parlant que les meilleurs questionnaires ?
+        </div>
+        
+        <p>Plusieurs moments marquants :</p>
+        <ul class="custom-list">
+            <li>Un petit garçon de 7 ans, initialement figé devant les chèvres, a fini la journée en expliquant à sa mère "comment parler à une chèvre pour qu'elle devienne ton amie"</li>
+            <li>Une fillette de 9 ans en situation d'hyperactivité a trouvé un calme inhabituel en brossant un lapin nain pendant près de 30 minutes, sous le regard ému de ses parents</li>
+            <li>Un groupe d'enfants a spontanément proposé de revenir "tous les mercredis" pour aider les soigneurs, créant un lien qui dépasse le simple stage</li>
+            <li>Plusieurs enfants ont rapporté chez eux des graines pour oiseaux et ont installé leur mangeoire, perpétuant l'engagement au-delà de la ferme</li>
+        </ul>
+        
+        <h3>👩‍🌾 Retour des soigneurs et responsables</h3>
+        <p>Nous avons réalisé un entretien avec <strong>Marie</strong>, soigneuse animalière et coordinatrice du programme "Petit Fermier" :</p>
+        
+        <div class="intro-box" style="border-left-color: var(--orange);">
+            <p><em>"Votre équipe a apporté une énergie bienvenue. Ce qui m'a le plus marqué, c'est votre capacité à vous adapter à chaque enfant sans que nous ayons à vous le demander. Vous avez compris intuitivement que notre travail n'est pas seulement de montrer des animaux, mais de créer des ponts. Votre présence nous a permis de proposer des ateliers plus petits groupes, donc plus qualitatifs. On sentait que vous étiez là par conviction, pas par obligation."</em></p>
+            <p style="text-align: right; margin-top: 15px; color: var(--marron);">— Marie, Soigneuse animalière, Au Pré de Justin</p>
+        </div>
+        
+        <p><strong>Le directeur de l'association</strong> nous a également fait part de son appréciation :</p>
+        
+        <div class="intro-box" style="border-left-color: var(--vert-ferme);">
+            <p><em>"Recevoir des étudiants d'école de commerce peut surprendre. Mais votre équipe a démonté les préjugés. Vous avez montré que l'engagement humanitaire n'est pas réservé à un profil type. Votre rigueur dans l'organisation et votre créativité dans l'animation ont enrichi notre programme. Nous serions ravis de vous accueillir à nouveau."</em></p>
+            <p style="text-align: right; margin-top: 15px; color: var(--marron);">— Directeur, Association Au Pré de Justin</p>
+        </div>
+        
+        <h3>👨‍👩‍👧 Retour des parents</h3>
+        <p>Plusieurs parents nous ont abordés en fin de journée pour exprimer leur gratitude. Les thèmes récurrents :</p>
+        <ul class="custom-list">
+            <li>La qualité de l'encadrement et la sécurité perçue</li>
+            <li>La patience dont vous avez fait preuve avec les enfants plus difficiles</li>
+            <li>La transmission de valeurs de respect et de responsabilité envers les animaux</li>
+            <li>L'enthousiasme contagieux qui a transformé une simple sortie en souvenir mémorable</li>
+        </ul>
+    </section>
+
+    <!-- SECTION 6 : CONCLUSION -->
+    <section>
+        <h2><span>🌈</span> Bilan et perspectives</h2>
+        
+        <p>Ces deux journées aux Fermes de Justin resteront gravées dans nos mémoires comme un <strong>tournant</strong> de notre parcours étudiant. Nous sommes partis avec l'idée de "faire un projet humanitaire" et nous revenons avec la conviction d'avoir été transformés par l'expérience.</p>
+        
+        <h3>🔄 Ce que nous retiendrons</h3>
+        <div class="card-grid">
+            <div class="card">
+                <h4>🌱 L'humilité</h4>
+                <p>Apprendre des animaux et des enfants nous a rappelé que le savoir ne se mesure pas en crédits ECTS.</p>
+            </div>
+            <div class="card">
+                <h4>🤲 Le don de soi</h4>
+                <p>Donner son temps sans attendre de retour immédiat génère une satisfaction profonde et durable.</p>
+            </div>
+            <div class="card">
+                <h4>🌍 L'engagement</h4>
+                <p>Cette expérience n'est pas une parenthèse. Plusieurs d'entre nous envisagent de continuer le bénévolat à la ferme ou dans d'autres structures.</p>
+            </div>
+        </div>
+        
+        <div class="quote">
+            Le projet humanitaire n'est pas une case à cocher. C'est une porte qui s'ouvre sur une autre façon de voir le monde.
+        </div>
+        
+        <p style="text-align: center; margin-top: 40px; font-size: 1.2em; color: var(--vert-ferme);">
+            <strong>Merci aux Fermes de Justin pour leur accueil.<br>
+            Merci à l'ESI Business School pour cette opportunité.<br>
+            Merci à nous sept d'avoir osé franchir la porte de la ferme.</strong>
+        </p>
+        
+        <div class="team-grid" style="margin-top: 40px;">
+            <div class="member">Mickaël</div>
+            <div class="member">Petr</div>
+            <div class="member">Carlos</div>
+            <div class="member">Flavie</div>
+            <div class="member">Hadiath</div>
+            <div class="member">Jérémy</div>
+            <div class="member">Anna</div>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <div class="logo-esi">🎓 ESI Business School — Projet Humanitaire 2025-2026</div>
+    <p>Projet réalisé dans le cadre du programme pédagogique de l'ESI Business School</p>
+    <p style="margin-top: 15px; opacity: 0.8;">
+        Association : <a href="https://lesfermesdejustin.fr/">Au Pré de Justin — Les Fermes de Justin</a><br>
+        📍 Charly · Villette-de-Vienne · Feyzin
+    </p>
+    <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.6;">
+        Blog rédigé par l'équipe | Dates d'action : 11 et 18 avril 2026 | Date de rendu : Mai 2026
+    </p>
+</footer>
+
+</body>
+</html>
